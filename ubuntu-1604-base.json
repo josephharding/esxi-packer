@@ -21,7 +21,7 @@
     "ssh_timeout": "15m",
     "disk_type_id": "thin",
     "floppy_files": [
-      "preseed/ubuntu.cfg"
+      "preseed/{{user `preseed`}}"
     ],
     "boot_command": [
       "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
@@ -29,7 +29,7 @@
       "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
       "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
       "/install/vmlinuz noapic ",
-      "preseed/file=/floppy/ubuntu.cfg ",
+      "preseed/file=/floppy/{{user `preseed`}} ",
       "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
       "fb=false debconf/frontend=noninteractive ",
       "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
@@ -48,6 +48,8 @@
     "remote_password": "{{user `esxi_password`}}",
     "keep_registered": true,
     "vmx_data": {
+      "memsize": "4096",
+      "numvcpus": "2",
       "ethernet0.networkName": "VM Network"
     }
   }]
